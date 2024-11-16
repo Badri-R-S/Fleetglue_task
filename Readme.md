@@ -32,6 +32,7 @@ Before proceeding, ensure you have the following installed:
 
 ## Steps to run the container.
 - Clone the github repository using `git clone https://github.com/Badri-R-S/Fleetglue_task.git`
+- If using Windows, text files might have CRLF  line endings instead of LF. This can cause the script to be unrecognized inside the container (especially if the container runs a Linux-based OS). Convert the line endings of entrypoint.sh to LF before building the Docker image. This can be done by changing the line ending option in the bottom-right corner of vs code.
 - cd into the cloned repository
 - run `docker build -t $IMAGE_NAME $PATH_TO_DOCKER_FILE` to build docker image. Replace the PATH_To_DOCKER_FILE with the path to the Dockerfile in this repository and replace IMAGE_NAME with the name you want to give to the docker image.
 - run  `docker run -it --rm $IMAGE_NAME` to run the docker image.
