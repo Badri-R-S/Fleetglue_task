@@ -1,0 +1,13 @@
+#Task
+int64 robot_id
+string task
+string from_area
+string to_area
+string priority
+---
+#Result
+bool success
+string message
+---
+#Feedback
+string status
