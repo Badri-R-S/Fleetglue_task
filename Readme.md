@@ -44,3 +44,6 @@ Before proceeding, ensure you have the following installed:
 - cd into the cloned repository
 - run `docker build -t $IMAGE_NAME $PATH_TO_DOCKER_FILE` to build docker image. Replace the PATH_TO_DOCKER_FILE with the path to the Dockerfile in this repository and replace IMAGE_NAME with the name you want to give to the docker image.
 - run  `docker run -it --rm $IMAGE_NAME` to run the docker image.
+
+## Result
+Please refer to this link to view a video of the result, when running this docker image: [Result](https://drive.google.com/file/d/1uNYPyOWoAyobI_RcExVaUeY6i8kz_sAH/view?usp=sharing)
