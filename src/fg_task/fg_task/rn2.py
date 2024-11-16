@@ -2,33 +2,35 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer
-from custom_msgs.action import Mission
+from custom_msgs.action import Task
 
-class MissionActionServer(Node):
+class TaskServer(Node):
     def __init__(self):
-        super().__init__('mission_server')
+        super().__init__('task_server')
+        #Action server created to listen to client
         self._action_server = ActionServer(
             self,
-            Mission,
-            'mission_action',
+            Task,
+            'task_action',
             execute_callback=self.execute_callback
         )
-
-    async def execute_callback(self, goal_handle):
+        
+    #Callback to send response to client after getting task
+    async def execute_callback(self, task_handle):
         #print("----------------------------RECEIVED_GOAL--------------------------------")
-        self.get_logger().info(f'Received goal: {goal_handle.request}')
-        goal_handle.succeed()
+        self.get_logger().info(f'Received Task: {task_handle.request}')
+        task_handle.succeed()
 
-        result = Mission.Result()
+        result = Task.Result()
         result.success = True
         result.message = 'Mission completed successfully'
-        self.get_logger().info(f'Returning result: {result.message}')
+        #self.get_logger().info(f'Returning result: {result.message}')
         return result
 
 def main(args=None):
     rclpy.init(args=args)
-    mission_action_server = MissionActionServer()
-    rclpy.spin(mission_action_server)
+    task_server = TaskServer()
+    rclpy.spin(task_server)
     rclpy.shutdown()
 
 if __name__ == '__main__':
