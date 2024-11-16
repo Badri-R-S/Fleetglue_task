@@ -1,7 +1,7 @@
 # ROS2 - REST API 
 
-This repository contains the source code that runs a REST API server, and uses it to communicate with the ROS2 nodes.
-It has been used to communicate tasks and print acknowledgement. The entire application has been dockerized to deploy easier.
+This repository contains the source code that runs a REST API server and uses it to communicate with the ROS2 nodes.
+It has been used to communicate tasks and print acknowledgment. The entire application has been dockerized to deploy more easily.
 It includes:
 
 - The ROS2 source code (`src/` directory)
@@ -22,12 +22,20 @@ Before proceeding, ensure you have the following installed:
 
 ```plaintext
 .
-├── Dockerfile             # Docker configuration to build the image
-├── entrypoint.sh          # Script to initialize and launch the application
-├── src/                   # Source code for ROS packages
-│   ├── fg_task/           # ROS2 python package that contains scripts to run the application         
-│   ├── custom_msgs/       # ROS@ C++ package that contains custom action and message  
-
+├── Dockerfile                     # Docker configuration to build the image
+├── entrypoint.sh                  # Script to initialize and launch the application
+├── src/                           # Source code for ROS packages
+│   ├── fg_task/                   # ROS2 python package that contains scripts to run the application
+        ├── fg_task/
+            ├── app.py             # Script to host the API server
+            ├── task_publisher.py  # Script to get task and send a POST request to the endpoint in the server
+            ├── rn1.py             # Client script to send a GET request to the server to retrieve the task and send it to the Action Server.
+            ├── rn2.py             # Action Server script that accepts the task and prints it.           
+│   ├── custom_msgs/               # ROS2 C++ package that contains custom action and message
+        ├── action/
+            ├── Task.action        # Custom action
+        ├── msg/
+            ├── Task.msg           # Custom message  
 ```
 
 ## Steps to run the container.
