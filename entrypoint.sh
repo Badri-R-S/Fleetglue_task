@@ -15,13 +15,13 @@ trap cleanup SIGTERM SIGINT
 source /opt/ros/humble/setup.bash
 source /ros_ws/install/setup.bash
 
-
+# Command to run REST API server
 python3 /ros_ws/src/fg_task/fg_task/app.py &
 FLASK_PID=$!
 
 sleep 5
 
-# Run task_publisher in the background
+# Command to run task_publisher
 ros2 run fg_task task_publisher &
 TASK_PUBLISHER_PID=$!  # Get the process ID of task_publisher
 
