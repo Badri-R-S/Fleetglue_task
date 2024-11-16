@@ -12,8 +12,8 @@ find_package(std_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Mission.msg"
-  "action/Mission.action"
+  "msg/Task.msg"
+  "action/Task.action"
   )
 
 if(BUILD_TESTING)
