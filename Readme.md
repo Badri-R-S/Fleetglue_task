@@ -1,4 +1,4 @@
-# ROS 2 Workspace with Docker
+# ROS2 - REST API 
 
 This repository contains the source code that runs a REST API server, and uses it to communicate with the ROS2 nodes.
 It has been used to communicate tasks and print acknowledgement. The entire application has been dockerized to deploy easier.
