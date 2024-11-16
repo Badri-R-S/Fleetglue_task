@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from custom_msgs.msg import Mission # Import your custom message
+from custom_msgs.msg import Task # Imported custom message
 import requests
 import random
 
-class MissionPublisher(Node):
+class TaskPublisher(Node):
     def __init__(self):
-        super().__init__('mission_publisher')
-        self.timer = self.create_timer(2.0, self.send_mission_to_api)
+        super().__init__('task_publisher')
+        # Sending task every 1 seconds
+        self.timer = self.create_timer(1.0, self.send_task_to_api)
 
-    def send_mission_to_api(self):
-        # Create a custom mission message
-        msg = Mission()
-        msg.robot_id = random.randint(1, 1000)  # Random robot_id between 1 and 1000
-        msg.task = random.choice(["deliver_package", "pick_up_item", "inspect_area", "charge_battery"])
-        msg.from_area = random.choice(["Warehouse A", "Warehouse B", "Charging Station", "Docking Bay"])
-        msg.to_area = random.choice(["Warehouse A", "Warehouse B", "Charging Station", "Docking Bay"])
+    def send_task_to_api(self):
+        # Use custom message to create tasks
+        msg = Task()
+        msg.robot_id = random.randint(100,999)  # Random robot_id between 100 and 999
+        msg.task = random.choice(["deliver_item", "pick_up_item", "inspect_area", "charge_battery"])
+        msg.from_area = random.choice(["Warehouse A", "Warehouse B", "Charging Station", "Staging area"])
+        msg.to_area = random.choice(["Warehouse A", "Warehouse B", "Charging Station", "Staging area"])
         msg.priority = random.choice(["low", "medium", "high"])
 
         # Convert to dictionary and then JSON format
@@ -36,8 +37,8 @@ class MissionPublisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    mission_publisher = MissionPublisher()
-    rclpy.spin(mission_publisher)
+    task_publisher = TaskPublisher()
+    rclpy.spin(task_publisher)
     rclpy.shutdown()
 
 if __name__ == '__main__':
